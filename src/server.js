@@ -2,53 +2,21 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
+const connection = require("./db/connection");
+
+const Book = require("./books/model");
+
+const bookRouter = require("./books/routes")
+
 const app = express();
 
 app.use(express.json());
 
-// db connection 
+connection();
 
-const connection = async () =>  {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log("DB is working");
-}
+app.use(bookRouter);
 
-connection(); 
-
-// book model
-
-const bookSchema = new mongoose.Schema({
-    title: {
-        type: String, 
-        required: true, 
-        unique: true,
-    },
-    author: {
-        type: String,
-        required: true,
-    },
-    genre: {
-        type: String,
-
-    }
-})
-
-const Book = mongoose.model("book", bookSchema);
- 
 //routes
-// post
-
-app.post("/books/addbook", async (request, response) => {
-    console.log("request.body: ", request.body.genre );
-
-    const book = await Book.create({
-        title: request.body.title,
-        author: request.body.author,
-        genre: request.body.genre,
-    });
-
-    response.send({ message:  "success", book: book });
-})
 
 // get all the books
 
