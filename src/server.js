@@ -47,7 +47,6 @@ app.post("/books/addbook", async (request, response) => {
         genre: request.body.genre,
     });
 
-    // const book = "hello"
     response.send({ message:  "success", book: book });
 })
 
