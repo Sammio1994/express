@@ -66,64 +66,64 @@ app.listen(5000, () => {
 
 // POST - adds a book to the database
 
-app.post("/books/addbook", async (request, response) => {
-    console.log("request.body: ", request.body.genre );
+// app.post("/books/addbook", async (request, response) => {
+//     console.log("request.body: ", request.body.genre );
 
-    const book = await Book.create({
-        title: request.body.title,
-        author: request.body.author,
-        genre: request.body.genre,
-    });
+//     const book = await Book.create({
+//         title: request.body.title,
+//         author: request.body.author,
+//         genre: request.body.genre,
+//     });
 
-    response.send({ message:  "success", book: book });
-})
+//     response.send({ message:  "success", book: book });
+// })
 
 // GET - gets all books from the database
 
-app.get("/book/getallbooks", async (request, response) => {
-    try {
-    const books = await Book.find({});
-    response.send({ message:  "success", allbooks: books });
-    } catch (error) {
-    console.log(error)
-    }
-})
+// app.get("/books/getallbooks", async (request, response) => {
+//     try {
+//     const books = await Book.find({});
+//     response.send({ message:  "success", allbooks: books });
+//     } catch (error) {
+//     console.log(error)
+//     }
+// })
 
 // PUT - updates a book author (filter by title)
 
-app.put("/books/updatebookauthor", async (request, response) =>{
-    const author = await Book.findOneAndUpdate({ title: request.body.title}, {author: request.body.author});
-    response.send({ message: "success", bookauthor: author })
-}); 
+// app.put("/books/updatebookauthor", async (request, response) =>{
+//     const author = await Book.findOneAndUpdate({ title: request.body.title}, {author: request.body.author});
+//     response.send({ message: "success", bookauthor: author })
+// }); 
 
 
 // Alternative PUT
 
-app.put("/books/updatebookauthor", async (request, response) => {
-    try {
-        // Log incoming request data
-        console.log('Request Body:', request.body);
+// app.put("/books/updatebookauthor", async (request, response) => {
+//     try {
+//         // Log incoming request data
+//         console.log('Request Body:', request.body);
 
-        // Perform the update
-        const updatedBook = await Book.findOneAndUpdate(
-            { title: request.body.title },
-            { author: request.body.author },
-            { new: true } // This option returns the updated document
-        );
+//         // Perform the update
+//         const updatedBook = await Book.findOneAndUpdate(
+//             { title: request.body.title },
+//             { author: request.body.author },
+//             { new: true } // This option returns the updated document
+//         );
 
-        // Check if the book was found and updated
-        if (updatedBook) {
-            console.log('Updated Book:', updatedBook); // Log the updated book data
-            response.send({ message: "success", bookauthor: updatedBook });
-        } else {
-            console.log('Book not found'); // Log when no book is found
-            response.status(404).send({ message: "Book not found" });
-        }
-    } catch (error) {
-        console.log('Error:', error.message); // Log the error message
-        response.status(500).send({ message: "An error occurred", error: error.message });
-    }
-});
+//         // Check if the book was found and updated
+//         if (updatedBook) {
+//             console.log('Updated Book:', updatedBook); // Log the updated book data
+//             response.send({ message: "success", bookauthor: updatedBook });
+//         } else {
+//             console.log('Book not found'); // Log when no book is found
+//             response.status(404).send({ message: "Book not found" });
+//         }
+//     } catch (error) {
+//         console.log('Error:', error.message); // Log the error message
+//         response.status(500).send({ message: "An error occurred", error: error.message });
+//     }
+// });
 
 
 
@@ -131,7 +131,7 @@ app.put("/books/updatebookauthor", async (request, response) => {
 
 app.delete("/book/deletebookbytitle", async (request, response) => {
 
-    const deletedBook = await Book.deleteOne({bookName: request.body.bookName});
+    const deletedBook = await Book.deleteOne({title: request.body.title});
  
 response.send({message: "success", deletedBook: deletedBook});
 
