@@ -16,27 +16,31 @@ connection();
 
 app.use(bookRouter);
 
+
+
+
+
 //routes
 
 // get all the books
 
-app.get("/book/getallbooks", async (request, response) => {
-    try {
-    const books = await Book.find({});
-    response.send({ message:  "success", allbooks: books });
-    } catch (error) {
-    console.log(error)
-    }
-})
+// app.get("/book/getallbooks", async (request, response) => {
+//     try {
+//     const books = await Book.find({});
+//     response.send({ message:  "success", allbooks: books });
+//     } catch (error) {
+//     console.log(error)
+//     }
+// })
 
 // 
 // delete one book by title
 
-app.delete("/book/deletebookbytitle", async (request, response) => {
+// app.delete("/book/deletebookbytitle", async (request, response) => {
 
-    const deletedBook = await Book.deleteOne({bookName: request.body.bookName});
+//     const deletedBook = await Book.deleteOne({bookName: request.body.bookName});
  
-response.send({message: "success", deletedBook: deletedBook});
+// response.send({message: "success", deletedBook: deletedBook});
  
     // try {
     // const book = await Book.deleteOne({ name: 'book 1' });
@@ -44,7 +48,7 @@ response.send({message: "success", deletedBook: deletedBook});
     // } catch (error) {
     //     console.log(error)
     // }
-});
+// });
 
 app.get("/books/addbook", (request, response) => {
 
@@ -53,7 +57,7 @@ app.get("/books/addbook", (request, response) => {
 
 app.get("/books/allbooks" , (request, response) => {
     response.send( "success" );
-}) 
+});
 
 
 
@@ -129,12 +133,12 @@ app.listen(5000, () => {
 
 // DELETE - deletes a single book from the database
 
-app.delete("/book/deletebookbytitle", async (request, response) => {
+// app.delete("/book/deletebookbytitle", async (request, response) => {
 
-    const deletedBook = await Book.deleteOne({title: request.body.title});
+//     const deletedBook = await Book.deleteOne({title: request.body.title});
  
-response.send({message: "success", deletedBook: deletedBook});
+// response.send({message: "success", deletedBook: deletedBook});
 
-});
+// });
 
 // import express from "express";

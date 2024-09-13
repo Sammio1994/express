@@ -34,11 +34,17 @@ const deleteBookByTitle = async (request, response) => {
 response.send({message: "success", deletedBook: deletedBook});
 };
 
+const findOneAndReplace = async (request, response) => {
+    const book = await Book.findOneAndReplace({title: request.body.title}, {title: request.body.newtitle,author: request.body.author, genre: request.body.genre});
+    response.send({ message: "success", book: book});
+};
+
 module.exports = {
     addBook: addBook,
     getAllBooks: getAllBooks,
     updateBookAuthor: updateBookAuthor,
     deleteBookByTitle: deleteBookByTitle,
+    findOneAndReplace: findOneAndReplace,
 
 };
 
