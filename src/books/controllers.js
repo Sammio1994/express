@@ -39,14 +39,24 @@ const findOneAndReplace = async (request, response) => {
     response.send({ message: "success", book: book});
 };
 
+const deleteAllBooks = async (request, response) => {
+    const deletedBook = await Book.deleteMany({});
+response.send({message: "success", deletedBook: deletedBook});
+};
+
+// const getBookByTitle = async (request, response) =>{
+//     const author = await Book.findOne({ title: request.body.title});
+//     response.send({ message: "success", bookauthor: author })
+// };
+
+
+
 module.exports = {
     addBook: addBook,
     getAllBooks: getAllBooks,
     updateBookAuthor: updateBookAuthor,
     deleteBookByTitle: deleteBookByTitle,
     findOneAndReplace: findOneAndReplace,
-
+    deleteAllBooks: deleteAllBooks,
+    // getBookByTitle: getbookbytitle
 };
-
-
-
