@@ -1,6 +1,6 @@
 // Stretch Goals: 
 
-// - Use dynamic updates to search on a book name and update any field
+// - Use dynamic updates to search on a book name and update any field. TICK 
 
 
 
